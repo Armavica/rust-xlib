@@ -42,6 +42,13 @@ pub type KeyCode = c_uchar;
 
 pub type XPointer = *c_char;
 
+pub struct XTextProperty {
+    value: *c_char,
+    encoding: Atom,
+    format: c_int,
+    nitems: c_ulong,
+}
+
 pub struct struct__XExtData {
     number: c_int,
     next: *c_void /* struct__XExtData */,
@@ -1079,6 +1086,12 @@ pub static ZPixmap: c_int = 2;  // depth == drawable depth
 
 #[link(name="X11")]
 extern {
+
+pub fn XGetTextProperty(arg0: *Display, arg1: Window, arg2: *mut XTextProperty, arg3: Atom) -> c_int;
+
+pub fn XGetWMName(arg0: *Display, arg1: Window, arg2: *mut XTextProperty) -> c_int;
+
+pub fn Xutf8TextPropertyToTextList(arg0: *Display, arg1: *XTextProperty, arg2: *mut *mut *c_char, arg3: *mut c_int) -> c_int;
 
 pub fn _Xmblen(arg0: *c_char, arg1: c_int) -> c_int;
 
