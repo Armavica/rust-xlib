@@ -740,7 +740,116 @@ pub struct XGenericEventCookie {
     data: *c_void,
 }
 
-pub type union__XEvent = c_void /* FIXME: union type */;
+pub struct union__XEvent {
+    data: [c_ulong, ..24],
+}
+impl union__XEvent {
+    pub fn _type(&self) -> *c_int {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xany(&self) -> *XAnyEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xkey(&self) -> *XKeyEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xbutton(&self) -> *XButtonEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xmotion(&self) -> *XMotionEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xcrossing(&self) -> *XCrossingEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xfocus(&self) -> *XFocusChangeEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xexpose(&self) -> *XExposeEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xgraphicsexpose(&self) -> *XGraphicsExposeEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xnoexpose(&self) -> *XNoExposeEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xvisibility(&self) -> *XVisibilityEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xcreatewindow(&self) -> *XCreateWindowEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xdestroywindow(&self) -> *XDestroyWindowEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xunmap(&self) -> *XUnmapEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xmap(&self) -> *XMapEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xmaprequest(&self) -> *XMapRequestEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xreparent(&self) -> *XReparentEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xconfigure(&self) -> *XConfigureEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xgravity(&self) -> *XGravityEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xresizerequest(&self) -> *XResizeRequestEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xconfigurerequest(&self) -> *XConfigureRequestEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xcirculate(&self) -> *XCirculateEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xcirculaterequest(&self) -> *XCirculateRequestEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xproperty(&self) -> *XPropertyEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xselectionclear(&self) -> *XSelectionClearEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xselectionrequest(&self) -> *XSelectionRequestEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xselection(&self) -> *XSelectionEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xcolormap(&self) -> *XColormapEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xclient(&self) -> *XClientMessageEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xmapping(&self) -> *XMappingEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xerror(&self) -> *XErrorEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xkeymap(&self) -> *XKeymapEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xgeneric(&self) -> *XGenericEvent {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn xcookie(&self) -> *XGenericEventCookie {
+        unsafe { ::std::cast::transmute(self) }
+    }
+    pub fn pad(&self) -> *[c_long, ..24u] {
+        unsafe { ::std::cast::transmute(self) }
+    }
+}
 
 pub type XEvent = union__XEvent;
 
