@@ -15,7 +15,7 @@
 use std::libc::*;
 use std::ptr;
 use std::c_str::CString;
-pub use xlib::{Atom, Window};
+pub use xlib::{Atom, Window, Time};
 
 pub mod xlib;
 
@@ -184,6 +184,61 @@ impl Display {
             let mut wa = XWindowAttributes::new();
             xlib::XGetWindowAttributes(self.raw, w, &mut wa.raw);
             wa
+        }
+    }
+
+    pub fn create_simple_window(&self,
+                                parent: Window,
+                                x: int,
+                                y: int,
+                                width: uint,
+                                height: uint,
+                                border_width: uint,
+                                border: uint,
+                                background: uint) -> Window {
+        unsafe {
+            xlib::XCreateSimpleWindow(self.raw,
+                                      parent,
+                                      x as c_int,
+                                      y as c_int,
+                                      width as c_uint,
+                                      height as c_uint,
+                                      border_width as c_uint,
+                                      border as c_ulong,
+                                      background as c_ulong)
+        }
+    }
+
+    pub fn convert_selection(&self, selection: Atom, target: Atom, property: Atom, requestor: Window, time: Time) {
+        unsafe {
+            xlib::XConvertSelection(self.raw, selection, target, property, requestor, time);
+        }
+    }
+
+    pub fn next_event(&self) -> xlib::XEvent {
+        unsafe {
+            let mut ev = xlib::union__XEvent { data: [0, ..24] };
+            xlib::XNextEvent(self.raw, &mut ev);
+            ev
+        }
+    }
+
+    pub fn get_window_property(&self, w: Window, property: Atom,
+                               offset: int, length: int, delete: bool,
+                               reg_type: Atom) -> (Atom, int, uint, uint, CString) {
+        unsafe {
+            let mut actual_type = 0;
+            let mut actual_format = 0;
+            let mut nitems = 0;
+            let mut bytes_after = 0;
+            let mut prop = ptr::mut_null();
+            xlib::XGetWindowProperty(self.raw, w, property, offset as c_long,
+                                     length as c_long, delete as c_char,
+                                     reg_type, &mut actual_type, &mut actual_format,
+                                     &mut nitems, &mut bytes_after, &mut prop);
+
+            (actual_type, actual_format as int, nitems as uint, bytes_after as uint,
+                CString::new(prop as *i8, true))
         }
     }
 }
