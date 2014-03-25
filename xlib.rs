@@ -1513,7 +1513,7 @@ pub fn XGetScreenSaver(arg0: *Display, arg1: *c_int, arg2: *c_int, arg3: *c_int,
 
 pub fn XGetTransientForHint(arg0: *Display, arg1: Window, arg2: *Window) -> c_int;
 
-pub fn XGetWindowProperty(arg0: *Display, arg1: Window, arg2: Atom, arg3: c_long, arg4: c_long, arg5: c_int, arg6: Atom, arg7: *Atom, arg8: *c_int, arg9: *c_ulong, arg10: *c_ulong, arg11: **c_uchar) -> c_int;
+pub fn XGetWindowProperty(arg0: *Display, arg1: Window, arg2: Atom, arg3: c_long, arg4: c_long, arg5: c_char, arg6: Atom, arg7: *mut Atom, arg8: *mut c_int, arg9: *mut c_ulong, arg10: *mut c_ulong, arg11: *mut *mut c_uchar) -> c_int;
 
 pub fn XGetWindowAttributes(arg0: *Display, arg1: Window, arg2: *mut XWindowAttributes) -> c_int;
 
@@ -1561,7 +1561,7 @@ pub fn XMoveResizeWindow(arg0: *Display, arg1: Window, arg2: c_int, arg3: c_int,
 
 pub fn XMoveWindow(arg0: *Display, arg1: Window, arg2: c_int, arg3: c_int) -> c_int;
 
-pub fn XNextEvent(arg0: *Display, arg1: *XEvent) -> c_int;
+pub fn XNextEvent(arg0: *Display, arg1: *mut XEvent) -> c_int;
 
 pub fn XNoOp(arg0: *Display) -> c_int;
 
