@@ -1126,7 +1126,7 @@ pub fn XSynchronize(arg0: *Display, arg1: c_int) -> *u8;
 
 pub fn XSetAfterFunction(arg0: *Display, arg1: *u8) -> *u8;
 
-pub fn XInternAtom(arg0: *Display, arg1: *c_char, arg2: c_int) -> Atom;
+pub fn XInternAtom(arg0: *Display, arg1: *c_char, arg2: c_char) -> Atom;
 
 pub fn XInternAtoms(arg0: *Display, arg1: **c_char, arg2: c_int, arg3: c_int, arg4: *Atom) -> c_int;
 
@@ -1278,7 +1278,7 @@ pub fn XGetWMColormapWindows(arg0: *Display, arg1: Window, arg2: **Window, arg3:
 
 pub fn XSetWMColormapWindows(arg0: *Display, arg1: Window, arg2: *Window, arg3: c_int) -> c_int;
 
-pub fn XFreeStringList(arg0: **c_char);
+pub fn XFreeStringList(arg0: *mut *c_char);
 
 pub fn XSetTransientForHint(arg0: *Display, arg1: Window, arg2: Window) -> c_int;
 
@@ -1450,7 +1450,7 @@ pub fn XFlush(arg0: *Display) -> c_int;
 
 pub fn XForceScreenSaver(arg0: *Display, arg1: c_int) -> c_int;
 
-pub fn XFree(arg0: *c_void) -> c_int;
+pub fn XFree(arg0: *mut c_void) -> c_int;
 
 pub fn XFreeColormap(arg0: *Display, arg1: Colormap) -> c_int;
 
@@ -1502,7 +1502,7 @@ pub fn XGetTransientForHint(arg0: *Display, arg1: Window, arg2: *Window) -> c_in
 
 pub fn XGetWindowProperty(arg0: *Display, arg1: Window, arg2: Atom, arg3: c_long, arg4: c_long, arg5: c_int, arg6: Atom, arg7: *Atom, arg8: *c_int, arg9: *c_ulong, arg10: *c_ulong, arg11: **c_uchar) -> c_int;
 
-pub fn XGetWindowAttributes(arg0: *Display, arg1: Window, arg2: *XWindowAttributes) -> c_int;
+pub fn XGetWindowAttributes(arg0: *Display, arg1: Window, arg2: *mut XWindowAttributes) -> c_int;
 
 pub fn XGrabButton(arg0: *Display, arg1: c_uint, arg2: c_uint, arg3: Window, arg4: c_int, arg5: c_uint, arg6: c_int, arg7: c_int, arg8: Window, arg9: Cursor) -> c_int;
 
@@ -1596,7 +1596,7 @@ pub fn XQueryTextExtents(arg0: *Display, arg1: XID, arg2: *c_char, arg3: c_int, 
 
 pub fn XQueryTextExtents16(arg0: *Display, arg1: XID, arg2: *XChar2b, arg3: c_int, arg4: *c_int, arg5: *c_int, arg6: *c_int, arg7: *XCharStruct) -> c_int;
 
-pub fn XQueryTree(arg0: *Display, arg1: Window, arg2: *Window, arg3: *Window, arg4: **Window, arg5: *c_uint) -> c_int;
+pub fn XQueryTree(arg0: *Display, arg1: Window, arg2: *mut Window, arg3: *mut Window, arg4: *mut *mut Window, arg5: *mut c_uint) -> c_int;
 
 pub fn XRaiseWindow(arg0: *Display, arg1: Window) -> c_int;
 
