@@ -852,6 +852,14 @@ pub struct XTextItem16 {
     pub font: Font,
 }
 
+#[repr(C)]
+pub struct XTextProperty {
+    pub value: *mut c_char,
+    pub encoding: Atom,
+    pub format: c_int,
+    pub nitems: c_ulong,
+}
+
 pub type XEDataObject = c_void /* FIXME: union type */;
 
 #[repr(C)]
@@ -1355,6 +1363,8 @@ extern {
     pub fn XListDepths(arg0: *mut Display, arg1: c_int, arg2: *mut c_int) -> *mut c_int;
 
     pub fn XReconfigureWMWindow(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: c_uint, arg4: *mut XWindowChanges) -> c_int;
+
+    pub fn XGetWMName(arg0: *mut Display, arg1: Window, arg2: *mut XTextProperty) -> c_int;
 
     pub fn XGetWMProtocols(arg0: *mut Display, arg1: Window, arg2: *mut *mut Atom, arg3: *mut c_int) -> c_int;
 
@@ -1913,6 +1923,10 @@ extern {
     pub fn XwcTextPerCharExtents(arg0: XFontSet, arg1: *mut wchar_t, arg2: c_int, arg3: *mut XRectangle, arg4: *mut XRectangle, arg5: c_int, arg6: *mut c_int, arg7: *mut XRectangle, arg8: *mut XRectangle) -> c_int;
 
     pub fn Xutf8TextPerCharExtents(arg0: XFontSet, arg1: *mut c_char, arg2: c_int, arg3: *mut XRectangle, arg4: *mut XRectangle, arg5: c_int, arg6: *mut c_int, arg7: *mut XRectangle, arg8: *mut XRectangle) -> c_int;
+
+    pub fn Xutf8TextPropertyToTextList(arg0: *mut Display, arg1: *mut XTextProperty, arg2: *mut *mut *mut c_char, arg3: *mut c_int) -> c_int;
+
+    pub fn XGetTextProperty(arg0: *mut Display, arg1: Window, arg2: *mut XTextProperty, arg3: Atom) -> c_int;
 
     pub fn XmbDrawText(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *mut XmbTextItem, arg6: c_int);
 
